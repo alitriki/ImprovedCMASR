@@ -186,7 +186,7 @@
 
 @media (min-width: 480px) {
   .nav_menu {
-    position: fixed; } }
+    position: static; } }
 .nav-md .container.body .col-md-3.left_col {
   min-height: 100%;
   width: 230px;
@@ -797,7 +797,6 @@ h2 {
   background: #F2F5F7;
   padding: 13px;
   width: 100%;
-  font-size: 120%;
   display: block; }
 
 .accordion .panel:hover {
@@ -4131,13 +4130,15 @@ ul.notifications {
 
 /** /Dropzone.js **/
 
-/*
+
 .panel-heading{
   font-size: 120%;
-
-}*/
-/*.panel-body{
+  text-align: center;
+  font-weight: bold;
+  background-color: #e5e5e5;
+}
+.panel-body{
   font-size: 105%;
   font-weight: bold;
+  text-align: center;
 }
-*/

@@ -1,0 +1,16 @@
+<!--<table class="table table-borderless table-condensed">
+    <tr>
+        <td style="width:30%;" ng-include="'partials/left_nav.html'">
+
+        </td>
+        <td style="width:70%"><div ui-view></div></td>
+    </tr>
+</table>-->
+<div class="dashboard-content">
+    <div class="dashboard-left-navbar">
+        <div ng-include="'partials/left_nav.html'"></div>
+    </div>
+    <div class="dashboard-right-content">
+       <div ui-view></div>
+    </div>
+</div>
