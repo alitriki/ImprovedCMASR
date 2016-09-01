@@ -48,7 +48,7 @@ angular.module('CmasR')
                     $scope.data = data;
                     //$scope.result = JSON.parse(data);
                     $scope.result = data;
-                    console.log($scope.result.picture);
+                    //console.log($scope.result.picture);
 
                     //temporary condition for login
                     if ($scope.result.level >= 1) {

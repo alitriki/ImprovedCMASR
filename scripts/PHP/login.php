@@ -33,10 +33,14 @@ if(!$connection)
         //echo ("{\"picture\" : ".$row['pic'].", \"level\" :".$row['lev']."}");
         //echo ("{\"picture\" : \" ".base64_encode($row['pic'])." \" , \"level\" :".$row['lev']." }");
 
+
+        //close the connection
+        $connection->close();
+
     }else
     {
         echo ("Wrong username or password");
     }
 }
 
-header('Content-Type: image/jpg');
+/*header('Content-Type: image/jpg');*/

@@ -1,6 +1,12 @@
 <div class="scrollable-content">
     <div class="row" ng-controller="MainSiteController">
         <div class="col-md-6 col-sm-5 col-xs-12">
+            <div class="panel panel-default" ng-repeat='site in websites'>
+                <div class="panel-heading">{{site.title}}</div>
+                <div class="panel-body">{{colorCode(site.id)}}</div>
+            </div>
+        </div><!--end of Col-MD-4-->
+        <div class="col-md-6 col-sm-5 col-xs-12">
             <div class="panel panel-default" ng-controller="AirtelMoneyMarketCtrl" ng-style='getColor(0)'>
                 <div class="panel-heading">Airtel Money Market</div>
                 <div class="panel-body">{{colorCode(0)}}</div>
@@ -86,3 +92,39 @@
         </div>
     </div>
 </div>
+
+<div class="add-site-to-monitor" data-toggle="modal" data-target=".forget-modal">
+    <a data-toggle="tooltip" data-placement="top" title="Add Website">
+        <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+    </a>
+</div>
+
+<div class="modal fade forget-modal" tabindex="-1" role="dialog" aria-labelledby="myForgetModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm" ng-controller="AddWebsiteCtrl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">Sluiten</span>
+                </button>
+                <h4 class="modal-title">Add Website</h4>
+            </div>
+            <div class="modal-body">
+                <p>Title Here</p>
+                <input type="text" name="recovery-email"  class="form-control"
+                       autocomplete="off" placeholder="{{placeholder_title}}"
+                ng-model="site.title" />
+                <p>Site Url Here</p>
+                <input type="text" name="recovery-email"  class="form-control"
+                       autocomplete="off" placeholder="{{placeholder_url}}"
+                       ng-model="site.url" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary btn-large"
+                        data-dismiss="modal" ng-click="addSite()">Add</button>
+                <!--<button type="button" class="btn btn-custom"></button>-->
+            </div>
+        </div> <!-- /.modal-content -->
+    </div> <!-- /.modal-dialog -->
+</div> <!-- /.modal -->
+

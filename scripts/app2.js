@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('CmasR',['ngRoute','ngAnimate','ui.router'])
+angular.module('CmasR',['ngRoute','ngAnimate','ui.router','ui.bootstrap','angularModalService'])
     .config([
         '$routeProvider',
         '$locationProvider',
@@ -69,11 +69,34 @@ angular.module('CmasR',['ngRoute','ngAnimate','ui.router'])
             $locationProvider.html5Mode(true);
 
         }])
-    .run(function ($rootScope) {
+    .run(function ($rootScope,$timeout,$http) {
         $rootScope.username = "nothing";
         $rootScope.loggedIn = "false";
         $rootScope.level = 0;
         $rootScope.picture = 0;
         $rootScope.urls = {};
         $rootScope.responses={};
+        $rootScope.websites = [];
+      $rootScope.loadSites = function()
+        {
+            var sitesUrl = "scripts/PHP/getSites.php";
+
+            $http.post(sitesUrl)
+                .success(function(data,status){
+                    $rootScope.websites = data;
+                    //console.log($rootScope.websites);
+
+                    for(var i=0; i<$rootScope.websites.length; i++)
+                    {
+                        console.log($rootScope.websites[i]);
+                    }
+                })
+                .error(function(data,status){
+                    console.log('Error');
+                })
+        };
+
+        $timeout(function(){
+            $rootScope.loadSites();
+        },100);
     });

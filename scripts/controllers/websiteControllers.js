@@ -441,39 +441,41 @@ angular.module('CmasR')
                 console.log('error');
             })*/
     }])
+    .controller('AddWebsiteCtrl',['$scope','$http','$rootScope',function($scope,$http,$rootScope)
+    {
+        console.log("Add Website Controller Active");
+        //var newWebsiteName = $scope.newSite;
+        $scope.placeholder_url = 'www.rancardsolutions.com';
+        $scope.placeholder_title = "Rancard Mobility Site";
+
+        $scope.addSite = function()
+        {
+            console.log("Site to be added"+$scope.site.name);
+            $scope.url = "scripts/PHP/websites.php";
+
+            var temp1 = $scope.site.url; var temp2 = $scope.site.title;
+            var dataSent = {"url":temp1,"sitetitle": temp2};
+
+            //console.log("Data to be sent over : "+dataSent);
+
+            $http.post($scope.url,dataSent)
+                .success(function (data, status, headers, config) {
+                    //console.log("Data retrieved is "+data);
+                    console.log("After adding site"+data);
+
+                    $scope.status = status;
+                    $scope.result = data;
+                    console.log($scope.result);
+
+                })
+                .error(function (data, status, headers, config) {
+                    console.log('error');
+                })
+        }
+    }])
     .controller('MainSiteController',['$scope',
         '$http','$rootScope','$timeout','$interval'
         ,function($scope,$http,$rootScope,$timeout,$interval){
-        /*console.log($rootScope.urls);
-        $scope.url = 'scripts/PHP/monitorSite.php';
-         //console.log($scope.url);
-         //dataSent = {'urlsite': website};
-
-         $http.post($scope.url,$rootScope.urls)
-         .success(function(data, status,headers,config) {
-         //console.log("Data retrieved is "+data);
-         $scope.status = status;
-         $scope.data = data;
-             //console.log(data.substring(13,data.length-3));
-
-             //split them by commas
-             var commaSplit = data.substring(13,data.length-3).split(',');
-             //console.log(commaSplit);
-             var i = 0;
-             for (; i<commaSplit.length; i++)
-             {
-                 var val = commaSplit[i].substring(commaSplit[i].indexOf(':')+1,commaSplit[i].length);
-                 console.log(val);
-                 $rootScope.responses[i.toString()] = val.toString();
-             }
-             //$rootScope.responses = JSON.parse(data.substring(12,data.length-2));
-             //console.log($rootScope.responses['9']);
-         $scope.result = "waiting...";//data;
-         })
-         .error(function(data,status,headers,config){
-         console.log('error');
-         });*/
-
 
         $scope.checkStatus = function()
         {
@@ -497,7 +499,7 @@ angular.module('CmasR')
                     for (; i<commaSplit.length; i++)
                     {
                         var val = commaSplit[i].substring(commaSplit[i].indexOf(':')+1,commaSplit[i].length);
-                        console.log(val);
+                        //console.log(val);
                         $rootScope.responses[i.toString()] = val.toString();
                     }
                     //$rootScope.responses = JSON.parse(data.substring(12,data.length-2));
@@ -529,7 +531,7 @@ angular.module('CmasR')
                 case "205":
                     return "Reset Content";
                 case "301":
-                    return "Moved temporarily";
+                    return "Moved Permanently";
                 case "302":
                     return "Found";
                 case "307":
@@ -558,6 +560,7 @@ angular.module('CmasR')
 
 
         };
+
 
             $timeout(function (){
                 $scope.checkStatus();
